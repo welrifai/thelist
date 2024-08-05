@@ -13,17 +13,53 @@
             },
             { 
                 title: "Do's and Don'ts of Dick Pics", 
-                content: "Do's:\n1. If you haven't been asked to send it, don't.", 
+                content: "Do's:\\n1. If you haven't been asked to send it, don't.", 
                 tags: ["relationships", "digital safety", "etiquette"]
             },
             { 
                 title: "Things Not to Do During a Midlife Crisis", 
-                content: "1. Don't get a fringe.\n2. Don't adopt a raccoon\n3. Don't make massive purchases of handbags from Chinese sellers.",
+                content: "1. Don't get a fringe.\\n2. Don't adopt a raccoon\\n3. Don't make massive purchases of handbags from Chinese sellers.",
                 tags: ["life advice", "mental health", "aging"]
             }
         ];
 
-        // ... (rest of the JavaScript remains unchanged) ...
+        function displayLists(listsToShow) {
+            const listContainer = document.getElementById('list-container');
+            listContainer.innerHTML = '';
+            listsToShow.forEach((list, index) => {
+                const listItem = document.createElement('div');
+                listItem.className = 'list-item';
+                listItem.textContent = list.title;
+                listItem.onclick = () => showContent(index);
+                listContainer.appendChild(listItem);
+            });
+        }
+
+        function showContent(index) {
+            const list = lists[index];
+            document.getElementById('content-title').textContent = list.title;
+            document.getElementById('content-body').innerHTML = `
+                <p>${list.content.replace(/\\n/g, '<br>')}</p>
+                <p>Tags: ${list.tags.map(tag => `<span class="tag">${tag}</span>`).join(' ')}</p>
+            `;
+        }
+
+        function setupSearch() {
+            const searchInput = document.getElementById('search-input');
+            searchInput.addEventListener('input', () => {
+                const searchTerm = searchInput.value.toLowerCase();
+                const filteredLists = lists.filter(list => 
+                    list.title.toLowerCase().includes(searchTerm) ||
+                    list.content.toLowerCase().includes(searchTerm) ||
+                    list.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+                );
+                displayLists(filteredLists);
+            });
+        }
+
+        // Initial setup
+        displayLists(lists);
+        setupSearch();
     </script>
 </body>
 </html>
