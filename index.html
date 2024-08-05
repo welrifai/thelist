@@ -1,8 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- ... (head and style sections remain unchanged) ... -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The List Guru</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+        }
+        #sidebar {
+            width: 250px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        #main-content {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        #search-container {
+            margin-bottom: 20px;
+        }
+        #search-input {
+            width: 100%;
+            padding: 5px;
+        }
+        .list-item {
+            cursor: pointer;
+            padding: 5px;
+            margin: 5px 0;
+        }
+        .list-item:hover {
+            background-color: #e0e0e0;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #ddd;
+            padding: 2px 5px;
+            margin: 2px;
+            border-radius: 3px;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
 <body>
-    <!-- ... (HTML structure remains unchanged) ... -->
+    <div id="sidebar">
+        <h2>The List Guru</h2>
+        <div id="search-container">
+            <input type="text" id="search-input" placeholder="Search lists...">
+        </div>
+        <div id="list-container"></div>
+    </div>
+    <div id="main-content">
+        <h2 id="content-title">Welcome to The List Guru</h2>
+        <div id="content-body">
+            <p>Click on a list from the sidebar to view its content here.</p>
+        </div>
+    </div>
 
     <script>
         const lists = [
